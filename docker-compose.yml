@@ -1,12 +1,10 @@
-version: "3.9"
-
 services:
   web:
     build: .
-    container_name: plc_web
+    container_name: plc_demo_web
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8001:8000"
     env_file:
       - .env
     volumes:
@@ -15,7 +13,7 @@ services:
 
   bot:
     build: .
-    container_name: plc_bot
+    container_name: plc_demo_bot
     command: python -m app.telegram_bot
     env_file:
       - .env
